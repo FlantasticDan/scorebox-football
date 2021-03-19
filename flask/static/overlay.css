@@ -181,6 +181,29 @@ body{
     text-align: center;
     width: 100%;
     text-transform: lowercase;
-    font-size: 1.2vw;
+    font-size: 1.1vw;
     padding-bottom: 0.45vw;
+}
+
+.possesion{
+    background-image: url('/static/img/football_possesion.svg');
+    background-size: contain;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding-bottom: .45vw;
+    background-position-y: -.15vw;
+}
+
+#home-possesion{
+    grid-area: hpos;
+}
+
+#visitor-possesion{
+    grid-area: vpos;
+}
+
+.hide{
+    display: none;
 }
