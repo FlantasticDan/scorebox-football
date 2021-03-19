@@ -18,6 +18,13 @@ const visitorTimeout1 = document.getElementById('visitor-timeout-1')
 const visitorTimeout2 = document.getElementById('visitor-timeout-2')
 const visitorTimeout3 = document.getElementById('visitor-timeout-3')
 
+
+const homeSummaryScore = document.getElementById('home-summary-score')
+const visitorSummaryScore = document.getElementById('visitor-summary-score')
+const summaryTag = document.getElementById('summary-tag')
+
+const scorestate = document.getElementById('scorestate')
+
 const socket = io()
 
 socket.on('update', payload => {
@@ -114,3 +121,19 @@ socket.on('update', payload => {
 
 })
 
+socket.on('display_mode', payload => {
+    console.log(payload)
+    if (payload.mode == 'live')
+    {
+        scorebox.classList.remove('hide')
+        scorestate.classList.add('hide')
+    }
+    else
+    {
+        homeSummaryScore.innerText = payload.home_score
+        visitorSummaryScore.innerText = payload.visitor_score
+        summaryTag.innerText = payload.tag
+        scorebox.classList.add('hide')
+        scorestate.classList.remove('hide')
+    }
+})

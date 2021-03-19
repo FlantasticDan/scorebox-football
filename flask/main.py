@@ -5,7 +5,7 @@ from images import Logos
 from manager import FootballManager
 from bundle import bundle
 
-VERSION = 'v0.0.1 (03172021)'
+VERSION = 'v1.0.0 (03192021)'
 LOGOS = Logos()
 MANAGER = None # FootballManager
 
@@ -48,6 +48,70 @@ def overlay():
 @socketio.on('update')
 def update(payload):
     return emit('update', payload, broadcast=True)
+
+@app.route('/bar')
+def bar():
+    socketio.emit('display_mode', {'mode': 'live'})
+    return 'OK'
+
+@app.route('/1')
+def one():
+    global MANAGER
+    state = MANAGER.console.export()
+    state.update({
+        'mode': 'summary',
+        'tag': 'End of 1st'
+    })
+    socketio.emit('display_mode', state)
+    return 'OK'
+
+@app.route('/2')
+def two():
+    global MANAGER
+    state = MANAGER.console.export()
+    state.update({
+        'mode': 'summary',
+        'tag': 'Halftime'
+    })
+    socketio.emit('display_mode', state)
+    return 'OK'
+
+@app.route('/3')
+def three():
+    global MANAGER
+    state = MANAGER.console.export()
+    state.update({
+        'mode': 'summary',
+        'tag': 'End of 3rd'
+    })
+    socketio.emit('display_mode', state)
+    return 'OK'
+
+@app.route('/4')
+def four():
+    global MANAGER
+    state = MANAGER.console.export()
+    state.update({
+        'mode': 'summary',
+        'tag': 'Final'
+    })
+    socketio.emit('display_mode', state)
+    return 'OK'
+
+@app.route('/0')
+def zero():
+    global MANAGER
+    state = MANAGER.console.export()
+    state.update({
+        'mode': 'summary',
+        'tag': 'Starting Soon'
+    })
+    socketio.emit('display_mode', state)
+    return 'OK'
+
+@app.route('/admin')
+def admin():
+    return app.send_static_file("admin.html")
 
 if __name__ == '__main__':
     bundle(app)

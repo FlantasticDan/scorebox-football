@@ -212,6 +212,7 @@ body{
 
 .hide{
     display: none;
+    opacity: 0;
 }
 
 .timeouts{
@@ -238,4 +239,67 @@ body{
 
 #scorebox.flag{
     border-color: #ffd436
+}
+
+#scorestate{
+    width: 10.5vw;
+    height: 12vw;
+    position: absolute;
+    bottom: 5vh;
+    left: 5vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    place-items: center;
+    align-items: center;
+    border: var(--box-border) solid var(--light-grey);
+    background: var(--dark-grey);
+    box-sizing: border-box;
+    font-family: 'Open Sans';
+    color: white;
+}
+
+.summary-box{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.summary-logo{
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    aspect-ratio: 1/1;
+}
+
+.home.summary-logo{
+    background-image: url('/home');
+}
+
+.visitor.summary-logo{
+    background-image: url('/visitor');
+}
+
+.summary-score{
+    background-color: rgba(1,1,1,0.3);
+    height: 5vw;
+    color: white;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    font-size: 3.75vw;
+    font-family: 'Open Sans';
+    font-weight: 700;
+    aspect-ratio: 1/1;
+}
+
+#summary-tag{
+    height: 1.5vw;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    place-content: center;
+    font-size: 1.2vw;
+    color: #edab40;
 }
