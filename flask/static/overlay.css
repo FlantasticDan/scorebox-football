@@ -47,7 +47,6 @@ body{
     width: 100%;
     display: grid;
     place-items: center;
-    grid-template-columns: auto 1fr auto;
     grid-template-rows: var(--name-row) var(--mascot-row);
 }
 
@@ -127,7 +126,8 @@ body{
 }
 
 #home{
-    grid-template-areas: "logo name score" "logo mascot score";
+    grid-template-areas: "logo timeouts name score" "logo timeouts mascot score";
+    grid-template-columns: auto auto 1fr auto;
     text-align: right;
 }
 
@@ -136,7 +136,8 @@ body{
 }
 
 #visitor{
-    grid-template-areas: "score name logo" "score mascot logo";
+    grid-template-areas: "score name timeouts logo" "score mascot timeouts logo";
+    grid-template-columns: auto 1fr auto auto;
     text-align: left;
 }
 
@@ -206,4 +207,26 @@ body{
 
 .hide{
     display: none;
+}
+
+.timeouts{
+    grid-area: timeouts;
+    width: .5vw;
+    height: 100%;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    display: grid;
+    gap: .1vw;
+    padding: .1vw;
+    box-sizing: border-box;
+}
+
+.timeout{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(1,1,1,0.3);
+}
+
+.timeout.available{
+    background-color: white;
 }
