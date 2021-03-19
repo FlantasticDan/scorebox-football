@@ -170,6 +170,10 @@ body{
     color: #edab40;
 }
 
+#shot-clock.red{
+    color: #ed4040
+}
+
 #period{
     grid-area: period;
     padding-bottom: 0.45vw;

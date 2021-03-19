@@ -22,7 +22,15 @@ socket.on('update', payload => {
     homeScore.innerText = payload.home_score
     visitorScore.innerText = payload.visitor_score
     gameClock.innerText = payload.clock
-    shotClock.innerText = payload.play
+    shotClock.innerText = parseInt(payload.play)
+    if (parseInt(payload.play) <= 5)
+    {
+        shotClock.classList.add('red')
+    }
+    else
+    {
+        shotClock.classList.remove('red')
+    }
     period.innerText = payload.quarter
     downs.innerText = `${payload.down} & ${payload.to_go}`
 
