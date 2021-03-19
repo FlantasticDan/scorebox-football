@@ -1,3 +1,5 @@
+const scorebox = document.getElementById('scorebox')
+
 const homeScore = document.getElementById('home-score')
 const visitorScore = document.getElementById('visitor-score')
 const gameClock = document.getElementById('game-clock')
@@ -33,6 +35,15 @@ socket.on('update', payload => {
     }
     period.innerText = payload.quarter
     downs.innerText = `${payload.down} & ${payload.to_go}`
+
+    if (payload.flag)
+    {
+        scorebox.classList.add('flag')
+    }
+    else
+    {
+        scorebox.classList.remove('flag')
+    }
 
     if (payload.home_possesion){
         homePossesion.classList.remove('hide')

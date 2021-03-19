@@ -41,6 +41,7 @@ body{
     box-sizing: border-box;
     font-family: 'Open Sans';
     color: white;
+    transition: border-color 0.5s;
 }
 
 .team-box{
@@ -233,4 +234,8 @@ body{
 
 .timeout.available{
     background-color: white;
+}
+
+#scorebox.flag{
+    border-color: #ffd436
 }
