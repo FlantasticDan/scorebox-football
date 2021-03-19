@@ -146,24 +146,24 @@ body{
 
 #clock{
     background: var(--dark-grey);
-    width: 5.5vw;
+    width: 10vw;
     display: grid;
     place-items: center;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr 1fr;
     grid-template-rows: var(--mascot-row) var(--name-row);
-    grid-template-areas: "clock clock" "shot period";
+    grid-template-areas: "period clock shot" "hpos downs vpos";
 }
 
 #game-clock{
     grid-area: clock;
-    font-size: 1.85vw;
+    font-size: 1.55vw;
     font-weight: 600;
     padding-bottom: 0.45vw;
 }
 
 #shot-clock{
     grid-area: shot;
-    padding-bottom: 0.35vw;
+    padding-bottom: 0.45vw;
     font-size: 1.25vw;
     font-weight: 700;
     color: #edab40;
@@ -171,7 +171,16 @@ body{
 
 #period{
     grid-area: period;
-    padding-bottom: 0.35vw;
+    padding-bottom: 0.45vw;
     font-size: 1.25vw;
     font-weight: 500;
+}
+
+#downs{
+    grid-area: downs;
+    text-align: center;
+    width: 100%;
+    text-transform: lowercase;
+    font-size: 1.2vw;
+    padding-bottom: 0.45vw;
 }
