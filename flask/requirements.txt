@@ -27,7 +27,7 @@ python-engineio==4.0.1
 python-socketio==5.1.0
 pywin32-ctypes==0.2.0
 requests==2.25.1
-scorebox-consoles==1.0.0
+scorebox-consoles==1.1.0
 six==1.15.0
 toml==0.10.2
 urllib3==1.26.3
