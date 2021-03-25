@@ -5,9 +5,9 @@ from images import Logos
 from manager import FootballManager
 from bundle import bundle
 
-VERSION = 'v2.0.0 (03242021)'
+VERSION = 'v2.0.0 (03252021)'
 LOGOS = Logos()
-MANAGER = None # FootballManager
+MANAGER = None # type: FootballManager
 
 app = Flask(__name__)
 socketio = SocketIO(app, cors_allowed_origins="*", async_mode='eventlet', logger=False, engineio_logger=False)
@@ -49,69 +49,14 @@ def overlay():
 def update(payload):
     return emit('update', payload, broadcast=True)
 
-@app.route('/bar')
-def bar():
-    socketio.emit('display_mode', {'mode': 'live'})
-    return 'OK'
-
-@app.route('/1')
-def one():
-    global MANAGER
-    state = MANAGER.console.export()
-    state.update({
-        'mode': 'summary',
-        'tag': 'End of 1st'
-    })
-    socketio.emit('display_mode', state)
-    return 'OK'
-
-@app.route('/2')
-def two():
-    global MANAGER
-    state = MANAGER.console.export()
-    state.update({
-        'mode': 'summary',
-        'tag': 'Halftime'
-    })
-    socketio.emit('display_mode', state)
-    return 'OK'
-
-@app.route('/3')
-def three():
-    global MANAGER
-    state = MANAGER.console.export()
-    state.update({
-        'mode': 'summary',
-        'tag': 'End of 3rd'
-    })
-    socketio.emit('display_mode', state)
-    return 'OK'
-
-@app.route('/4')
-def four():
-    global MANAGER
-    state = MANAGER.console.export()
-    state.update({
-        'mode': 'summary',
-        'tag': 'Final'
-    })
-    socketio.emit('display_mode', state)
-    return 'OK'
-
-@app.route('/0')
-def zero():
-    global MANAGER
-    state = MANAGER.console.export()
-    state.update({
-        'mode': 'summary',
-        'tag': 'Starting Soon'
-    })
-    socketio.emit('display_mode', state)
-    return 'OK'
-
 @app.route('/admin')
 def admin():
-    return app.send_static_file("admin.html")
+    global MANAGER
+    return render_template("admin.html", version=VERSION, **MANAGER.overlay_export())
+
+@socketio.on('touchdown')
+def touchdown(data):
+    return emit('touchdown', data, broadcast=True)
 
 if __name__ == '__main__':
     bundle(app)

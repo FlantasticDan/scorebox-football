@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+
+        <title>ScoreBox Football</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="/static/main.css">
+
+        <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/static/icons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/static/icons/favicon-16x16.png">
+
+    </head>
+
+    <body>
+
+        <div id="build-tag">
+            {{version}}
+        </div>
+
+        <div id="header-chrome">
+            <img src="/static/img/logo-white.png" height="50px">
+            <h1>Football</h1>
+            <img src="/static/img/football_icon.svg" height="25px">
+            <h2>{{home_name}} vs {{visitor_name}}</h2>
+            <div id="status-indicator">
+                STATUS: <span id="status" class="error">DISCONNECTED</span>
+            </div>
+        </div>
+
+        <div id="touchdown-dashboard" class="dash-contents">
+            <h3>Overlay Preview</h3>
+            <p>
+                Preview of the live overlay.
+            </p>
+            <iframe src="/overlay"></iframe>
+        </div>
+
+        <div id="touchdown-dashboard" class="dash-contents">
+            <h3>Touchdown Animations</h3>
+            <p>
+                Trigger Touchdown Animations.
+            </p>
+            <div id="touchdown-buttons">
+                <button id="home-touchdown-btn" class="btn">{{home_name}} {{home_mascot}} Touchdown</button>
+                <button id="visitor-touchdown-btn" class="btn">{{visitor_name}} {{visitor_mascot}} Touchdown</button>
+            </div>
+        </div>
+
+        <script src="/static/third-party/socket.io.min.js"></script>
+        <script src="/static/admin.js"></script>
+    </body>
+
+</html>

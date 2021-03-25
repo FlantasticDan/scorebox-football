@@ -384,3 +384,28 @@ button.toggle.toggled{
     width: 100%;
     text-align: right;
 }
+
+.dash-contents{
+    padding: 1em;
+}
+
+.dash-contents h3{
+    margin: 0 0 .25em;
+    font-size: 2.25em;
+}
+
+#touchdown-buttons{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+}
+
+iframe{
+    width: 100%;
+    border: 0;
+    outline: 0;
+    box-sizing: border-box;
+    padding: 1em;
+    height: 15em;
+}

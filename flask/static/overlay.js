@@ -154,3 +154,14 @@ function VisitorTouchdown() {
     visitorTouchdown.classList.add('animate')
     setTimeout(() => {visitorTouchdown.classList.remove('animate')}, 5500)
 }
+
+socket.on('touchdown', data=> {
+    if (data == 'home') {
+        HomeTouchdown()
+    }
+    else {
+        if (data == 'visitor') {
+            VisitorTouchdown()
+        }
+    }
+})
