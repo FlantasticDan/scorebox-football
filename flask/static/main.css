@@ -260,6 +260,10 @@ button.toggle.toggled{
     box-sizing: border-box;
 }
 
+.toggle-container.three{
+    grid-template-columns: 1fr repeat(3, auto);
+}
+
 .toggle-prompt{
     margin: auto auto auto 0;
 }
@@ -408,4 +412,26 @@ iframe{
     box-sizing: border-box;
     padding: 1em;
     height: 15em;
+}
+
+.raw-data{
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(13, 1fr);
+    font-family: 'Source Sans Pro';
+    text-align: center;
+}
+
+.raw-data-item{
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr;
+}
+
+.raw-data-header{
+    font-weight: 700;
+}
+
+.raw-data-content{
+    font-family: 'Source Code Pro';
 }
