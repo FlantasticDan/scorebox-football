@@ -18,6 +18,10 @@ class FootballManager:
         self.visitor_mascot = visitor_mascot
         self.visitor_color = visitor_color
 
+        self.game_state = None # type: Dict
+
+        self.flag_status = 'console'
+ 
         self.client = socketio.Client()
         self.client_thread = Thread(target=self.socket_client)
         self.client_thread.start()
@@ -28,6 +32,7 @@ class FootballManager:
     def updater(self, game_state):
         if self.client.connected:
             self.client.emit('update', game_state)
+            self.game_state = game_state
         
     def socket_client(self):
         self.client.connect('http://localhost:5000')
@@ -42,3 +47,11 @@ class FootballManager:
             'visitor_mascot': self.visitor_mascot,
             'visitor_color': self.visitor_color,
         }
+    
+    def status_export(self) -> Dict:
+        return {
+            'flag': self.flag_status
+        }
+    
+    def set_flag_status(self, new_status) -> None:
+        self.flag_status = new_status

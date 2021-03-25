@@ -97,11 +97,28 @@
         <div id="touchdown-dashboard" class="dash-contents">
             <h3>Touchdown Animations</h3>
             <p>
-                Trigger Touchdown Animations.
+                Trigger touchdown animations.
             </p>
             <div id="touchdown-buttons">
                 <button id="home-touchdown-btn" class="btn">{{home_name}} {{home_mascot}} Touchdown</button>
                 <button id="visitor-touchdown-btn" class="btn">{{visitor_name}} {{visitor_mascot}} Touchdown</button>
+            </div>
+        </div>
+
+        <div id="flag-dashboard" class="dash-contents">
+            <h3>Flags</h3>
+            <p>
+                Control penalty flag context, override console flag data, and assign team penalty indicators.
+            </p>
+            <div id="flag-controls">
+                <div class="toggle-container three">
+                    <div class="toggle-prompt">
+                        Flag Indicator
+                    </div>
+                    <button class="toggle" id="toggle-flag-off">Off</button>
+                    <button class="toggle" id="toggle-flag-on">On</button>
+                    <button class="toggle toggled" id="toggle-flag-console">Console Controlled</button>
+                </div>
             </div>
         </div>
 

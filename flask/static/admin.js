@@ -17,11 +17,23 @@ const rawToGo = document.getElementById('raw-to-go')
 const rawBallOn = document.getElementById('raw-ball-on')
 const rawFlag = document.getElementById('raw-flag')
 
+const toggleFlagOff = document.getElementById("toggle-flag-off")
+const toggleFlagOn = document.getElementById("toggle-flag-on")
+const toggleFlagConsole = document.getElementById("toggle-flag-console")
+
+let statusObject = undefined
+
 const socket = io()
 
 socket.on('connect', () => {
+    socket.emit('status-request', 'status')
+})
+
+socket.on('status', payload => {
     status.innerText = 'CONNECTED'
     status.classList.remove('error')
+    statusObject = payload
+    StatusUpdate()
 })
 
 socket.on('disconnect', () => {
@@ -37,7 +49,7 @@ visitorTouchdownBtn.onclick = () => {
     socket.emit('touchdown', 'visitor')
 }
 
- socket.on('update', payload => {
+socket.on('update', payload => {
     rawHomeScore.innerText = payload.home_score
     rawVisitorScore.innerText = payload.visitor_score
     rawHomeTimeouts.innerText = payload.home_timeouts
@@ -51,4 +63,41 @@ visitorTouchdownBtn.onclick = () => {
     rawToGo.innerText = payload.to_go
     rawBallOn.innerText = payload.ball_on
     rawFlag.innerText = payload.flag
- })
+})
+
+function ClearFlagToggles() {
+    toggleFlagConsole.classList.remove('toggled')
+    toggleFlagOff.classList.remove('toggled')
+    toggleFlagOn.classList.remove('toggled')
+}
+
+function SetFlagToggle(newState) {
+    ClearFlagToggles()
+    switch (newState)
+    {
+        case "on":
+            toggleFlagOn.classList.add('toggled')
+            break
+        case "off":
+            toggleFlagOff.classList.add('toggled')
+            break
+        case "console":
+            toggleFlagConsole.classList.add('toggled')
+            break
+        default:
+            break
+    }
+}
+
+function FlagStatusChange(newState) {
+    socket.emit('flag-status', newState)
+}
+
+toggleFlagConsole.onclick = () => {FlagStatusChange('console')}
+toggleFlagOff.onclick = () => {FlagStatusChange('off')}
+toggleFlagOn.onclick = () => {FlagStatusChange('on')}
+
+function StatusUpdate() {
+    SetFlagToggle(statusObject.flag)
+}
+

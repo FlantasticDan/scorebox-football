@@ -58,6 +58,17 @@ def admin():
 def touchdown(data):
     return emit('touchdown', data, broadcast=True)
 
+@socketio.on('status-request')
+def status_request(data):
+    global MANAGER
+    return emit('status', MANAGER.status_export())
+
+@socketio.on('flag-status')
+def flag_status(data):
+    global MANAGER
+    MANAGER.set_flag_status(data)
+    return emit('status', MANAGER.status_export(), broadcast=True)
+
 if __name__ == '__main__':
     bundle(app)
     socketio.run(app, port=5000)

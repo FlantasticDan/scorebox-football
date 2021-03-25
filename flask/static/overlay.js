@@ -30,7 +30,18 @@ const flagOverlay = document.getElementById('flag-overlay')
 const homeTouchdown = document.getElementById('home-touchdown')
 const visitorTouchdown = document.getElementById('visitor-touchdown')
 
+let statusObject = undefined
+
 const socket = io()
+
+socket.on('connect', () => {
+    socket.emit('status-request', 'status')
+})
+
+socket.on('status', payload => {
+    statusObject = payload
+    StatusUpdate()
+})
 
 socket.on('update', payload => {
     homeScore.innerText = payload.home_score
@@ -48,16 +59,19 @@ socket.on('update', payload => {
     period.innerText = payload.quarter
     downs.innerText = `${payload.down} & ${payload.to_go}`
 
-    if (payload.flag)
+    if (statusObject.flag == "console")
     {
-        scorebox.classList.add('flag')
-        flagOverlay.classList.remove('hidden')
-    }
-    else
-    {
-        scorebox.classList.remove('flag')
-        flagOverlay.classList.add('hidden')
-    }
+        if (payload.flag)
+        {
+            scorebox.classList.add('flag')
+            flagOverlay.classList.remove('hidden')
+        }
+        else
+        {
+            scorebox.classList.remove('flag')
+            flagOverlay.classList.add('hidden')
+        }
+    }    
 
     if (payload.home_possesion){
         homePossesion.classList.remove('hide')
@@ -165,3 +179,19 @@ socket.on('touchdown', data=> {
         }
     }
 })
+
+function StatusUpdate() {
+    if (statusObject.flag == "on")
+    {
+        scorebox.classList.add('flag')
+        flagOverlay.classList.remove('hidden')
+    }
+    else
+    {
+        if (statusObject.flag == "off")
+        {
+            scorebox.classList.remove('flag')
+            flagOverlay.classList.add('hidden')
+        }
+    }
+}
