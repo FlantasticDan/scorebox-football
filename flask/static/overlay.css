@@ -45,6 +45,51 @@ body{
     transition: border-color 0.5s;
 }
 
+.touchdown{
+    width: var(--box-width);
+    height: 0vw;
+    position: absolute;
+    bottom: 5vh;
+    left: 20vw;
+    border: 0 solid var(--light-grey);
+    box-sizing: border-box;
+    font-family: 'Open Sans';
+    color: white;
+    font-size: 2.5vw;
+    font-weight: 900;
+    text-align: center;
+    overflow: hidden;
+}
+
+@keyframes touchdown-scored{
+    0%{
+        height: 0vh;
+        border-width: 0;
+    }
+
+    20%, 80%{
+        height: var(--box-height);
+        border-width: var(--box-border);
+    }
+
+    0%{
+        letter-spacing: normal;
+    }
+
+    100%{
+        letter-spacing: 3.5vw;
+    }
+
+}
+
+.touchdown.animate{
+    animation: touchdown-scored 5s;
+}
+
+.letter-spacing-bug{
+    opacity: 0;
+}
+
 .team-box{
     width: 100%;
     display: grid;
@@ -52,35 +97,35 @@ body{
     grid-template-rows: var(--name-row) var(--mascot-row);
 }
 
-.team-box.red, .summary-box.red{
+.team-box.red, .summary-box.red, .touchdown.red{
     background: var(--red);
 }
 
-.team-box.orange, .summary-box.orange{
+.team-box.orange, .summary-box.orange, .touchdown.orange{
     background: var(--orange);
 }
 
-.team-box.yellow, .summary-box.yellow{
+.team-box.yellow, .summary-box.yellow, .touchdown.yellow{
     background: var(--yellow);
 }
 
-.team-box.green, .summary-box.green{
+.team-box.green, .summary-box.green, .touchdown.green{
     background: var(--green);
 }
 
-.team-box.blue, .summary-box.blue{
+.team-box.blue, .summary-box.blue, .touchdown.blue{
     background: var(--blue);
 }
 
-.team-box.purple, .summary-box.purple{
+.team-box.purple, .summary-box.purple, .touchdown.purple{
     background: var(--purple);
 }
 
-.team-box.gold, .summary-box.gold{
+.team-box.gold, .summary-box.gold, .touchdown.gold{
     background: var(--gold);
 }
 
-.team-box.silver, .summary-box.silver{
+.team-box.silver, .summary-box.silver, .touchdown.silver{
     background: var(--silver);
 }
 

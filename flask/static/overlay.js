@@ -27,6 +27,9 @@ const scorestate = document.getElementById('scorestate')
 
 const flagOverlay = document.getElementById('flag-overlay')
 
+const homeTouchdown = document.getElementById('home-touchdown')
+const visitorTouchdown = document.getElementById('visitor-touchdown')
+
 const socket = io()
 
 socket.on('update', payload => {
@@ -141,3 +144,13 @@ socket.on('display_mode', payload => {
         scorestate.classList.remove('hide')
     }
 })
+
+function HomeTouchdown() {
+    homeTouchdown.classList.add('animate')
+    setTimeout(() => {homeTouchdown.classList.remove('animate')}, 5500)
+}
+
+function VisitorTouchdown() {
+    visitorTouchdown.classList.add('animate')
+    setTimeout(() => {visitorTouchdown.classList.remove('animate')}, 5500)
+}
