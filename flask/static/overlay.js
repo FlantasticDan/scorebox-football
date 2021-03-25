@@ -25,6 +25,8 @@ const summaryTag = document.getElementById('summary-tag')
 
 const scorestate = document.getElementById('scorestate')
 
+const flagOverlay = document.getElementById('flag-overlay')
+
 const socket = io()
 
 socket.on('update', payload => {
@@ -46,10 +48,12 @@ socket.on('update', payload => {
     if (payload.flag)
     {
         scorebox.classList.add('flag')
+        flagOverlay.classList.remove('hidden')
     }
     else
     {
         scorebox.classList.remove('flag')
+        flagOverlay.classList.add('hidden')
     }
 
     if (payload.home_possesion){

@@ -5,7 +5,7 @@ from images import Logos
 from manager import FootballManager
 from bundle import bundle
 
-VERSION = 'v1.0.0 (03192021)'
+VERSION = 'v2.0.0 (03242021)'
 LOGOS = Logos()
 MANAGER = None # FootballManager
 
