@@ -167,23 +167,6 @@ socket.on('update', payload => {
 
 })
 
-socket.on('display_mode', payload => {
-    console.log(payload)
-    if (payload.mode == 'live')
-    {
-        scorebox.classList.remove('hide')
-        scorestate.classList.add('hide')
-    }
-    else
-    {
-        homeSummaryScore.innerText = payload.home_score
-        visitorSummaryScore.innerText = payload.visitor_score
-        summaryTag.innerText = payload.tag
-        scorebox.classList.add('hide')
-        scorestate.classList.remove('hide')
-    }
-})
-
 function HomeTouchdown() {
     homeTouchdown.classList.add('animate')
     setTimeout(() => {homeTouchdown.classList.remove('animate')}, 5500)
@@ -230,6 +213,8 @@ function StatusUpdate() {
             ProcessAlert()
         }
     }
+    
+    ProcessDisplayMode()
 }
 
 function HomeFlag(offense) {
@@ -313,4 +298,38 @@ function ScoreBoxIn() {
     visitorTouchdown.classList.remove('out')
 
     scorestate.classList.add('out')
+}
+
+function ProcessDisplayMode() {
+    homeSummaryScore.innerText = homeScore.innerText
+    visitorSummaryScore.innerText = visitorScore.innerText
+
+    if (statusObject.display_mode == 'live')
+    {
+        ScoreBoxIn()
+    }
+    else
+    {
+        switch (statusObject.display_mode)
+        {
+            case 'start':
+                summaryTag.innerText = 'Starting Soon'
+                break
+            case 'first':
+                summaryTag.innerText = 'End of 1st'
+                break
+            case 'half':
+                summaryTag.innerText = 'Halftime'
+                break
+            case 'third':
+                summaryTag.innerText = 'End of 3rd'
+                break
+            case 'final':
+                summaryTag.innerText = 'Final'
+                break
+            default:
+                break
+        }
+        ScoreBoxOut()
+    }
 }

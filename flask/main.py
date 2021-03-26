@@ -94,6 +94,12 @@ def alert_mode_status(data):
     MANAGER.set_alert_text(data)
     return emit('status', MANAGER.status_export(), broadcast=True)
 
+@socketio.on('display-mode-status')
+def display_mode(data):
+    global MANAGER
+    MANAGER.set_display_mode(data)
+    return emit('status', MANAGER.status_export(), broadcast=True)
+
 if __name__ == '__main__':
     bundle(app)
     socketio.run(app, port=5000)

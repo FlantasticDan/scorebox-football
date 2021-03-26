@@ -264,6 +264,10 @@ button.toggle.toggled{
     grid-template-columns: 1fr repeat(3, auto);
 }
 
+.toggle-container.six{
+    grid-template-columns: 1fr repeat(6, auto);
+}
+
 .toggle-prompt{
     margin: auto auto auto 0;
 }
@@ -411,7 +415,8 @@ iframe{
     outline: 0;
     box-sizing: border-box;
     padding: 1em;
-    height: 15em;
+    height: 18em;
+    overflow: hidden;
 }
 
 .raw-data{

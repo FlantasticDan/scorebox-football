@@ -281,8 +281,8 @@ body{
 
 #period{
     grid-area: period;
-    padding-bottom: 0.45vw;
-    font-size: 1.25vw;
+    padding-bottom: 0.25vw;
+    font-size: 1.05vw;
     font-weight: 500;
 }
 
@@ -406,6 +406,7 @@ body{
     place-content: center;
     font-size: 1.2vw;
     color: #edab40;
+    text-transform: uppercase;
 }
 
 #flag-overlay{

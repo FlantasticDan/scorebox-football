@@ -24,6 +24,7 @@ class FootballManager:
         self.alert_mode = 'neutral'
         self.alert_visibility = 'off'
         self.alert_text = ''
+        self.display_mode = 'live'
  
         self.client = socketio.Client()
         self.client_thread = Thread(target=self.socket_client)
@@ -56,7 +57,8 @@ class FootballManager:
             'flag': self.flag_status,
             'alert_mode': self.alert_mode,
             'alert_visibility': self.alert_visibility,
-            'alert_text': self.alert_text
+            'alert_text': self.alert_text,
+            'display_mode': self.display_mode
         }
     
     def set_flag_status(self, new_status) -> None:
@@ -71,4 +73,7 @@ class FootballManager:
     def set_alert_text(self, new_status) -> None:
         self.alert_text = new_status
         self.alert_visibility = 'on'
+    
+    def set_display_mode(self, new_mode) -> None:
+        self.display_mode = new_mode
     

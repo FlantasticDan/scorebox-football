@@ -35,6 +35,13 @@ const alertClear = document.getElementById('alert-clear')
 const alertDisplay = document.getElementById('alert-display')
 const alertPreview = document.getElementById('alert-preview')
 
+const toggleDisplayLive = document.getElementById('toggle-display-live')
+const toggleDisplayStart = document.getElementById('toggle-display-start')
+const toggleDisplayFirst = document.getElementById('toggle-display-first')
+const toggleDisplayHalf = document.getElementById('toggle-display-half')
+const toggleDisplayThird = document.getElementById('toggle-display-third')
+const toggleDisplayFinal = document.getElementById('toggle-display-final')
+
 let statusObject = undefined
 
 const socket = io()
@@ -116,6 +123,7 @@ function StatusUpdate() {
     SetAlertModeToggle(statusObject.alert_mode)
     SetAlertVisibilityToggle(statusObject.alert_visibility)
     alertPreview.innerText = statusObject.alert_text
+    SetDisplayToggle(statusObject.display_mode)
 }
 
 function AssignPenalty(team) {
@@ -201,3 +209,50 @@ alertDisplay.onclick = () => {
         alertInput.value = ''
     }
 }
+
+function ClearDisplayToggles() {
+    toggleDisplayLive.classList.remove('toggled')
+    toggleDisplayStart.classList.remove('toggled')
+    toggleDisplayFirst.classList.remove('toggled')
+    toggleDisplayHalf.classList.remove('toggled')
+    toggleDisplayThird.classList.remove('toggled')
+    toggleDisplayFinal.classList.remove('toggled')
+}
+
+function SetDisplayToggle(newState) {
+    ClearDisplayToggles()
+    switch (newState)
+    {
+        case "live":
+            toggleDisplayLive.classList.add('toggled')
+            break
+        case "start":
+            toggleDisplayStart.classList.add('toggled')
+            break
+        case "first":
+            toggleDisplayFirst.classList.add('toggled')
+            break
+        case "half":
+            toggleDisplayHalf.classList.add('toggled')
+            break
+        case "third":
+            toggleDisplayThird.classList.add('toggled')
+            break
+        case "final":
+            toggleDisplayFinal.classList.add('toggled')
+            break
+        default:
+            break
+    }
+}
+
+function DisplayStatusChange(newState) {
+    socket.emit('display-mode-status', newState)
+}
+
+toggleDisplayLive.onclick = () => {DisplayStatusChange('live')}
+toggleDisplayStart.onclick = () => {DisplayStatusChange('start')}
+toggleDisplayFirst.onclick = () => {DisplayStatusChange('first')}
+toggleDisplayHalf.onclick = () => {DisplayStatusChange('half')}
+toggleDisplayThird.onclick = () => {DisplayStatusChange('third')}
+toggleDisplayFinal.onclick = () => {DisplayStatusChange('final')}
