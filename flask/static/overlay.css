@@ -61,10 +61,16 @@ body{
     text-transform: uppercase;
     transform: translateY(0vw);
     transition: transform 0.5s;
+    color: white;
+    background-color: var(--light-grey);
 }
 
 .alert-box.hidden{
     transform: translateY(calc(var(--name-row) + 0.25vw));
+}
+
+.alert-box.team-alert{
+    width: 25vw;
 }
 
 .alert-box.team-flag{
@@ -149,35 +155,35 @@ body{
     grid-template-rows: var(--name-row) var(--mascot-row);
 }
 
-.team-box.red, .summary-box.red, .touchdown.red{
+.team-box.red, .summary-box.red, .touchdown.red, .bg.red{
     background: var(--red);
 }
 
-.team-box.orange, .summary-box.orange, .touchdown.orange{
+.team-box.orange, .summary-box.orange, .touchdown.orange, .bg.orange{
     background: var(--orange);
 }
 
-.team-box.yellow, .summary-box.yellow, .touchdown.yellow{
+.team-box.yellow, .summary-box.yellow, .touchdown.yellow, .bg.yellow{
     background: var(--yellow);
 }
 
-.team-box.green, .summary-box.green, .touchdown.green{
+.team-box.green, .summary-box.green, .touchdown.green, .bg.green{
     background: var(--green);
 }
 
-.team-box.blue, .summary-box.blue, .touchdown.blue{
+.team-box.blue, .summary-box.blue, .touchdown.blue, .bg.blue{
     background: var(--blue);
 }
 
-.team-box.purple, .summary-box.purple, .touchdown.purple{
+.team-box.purple, .summary-box.purple, .touchdown.purple, .bg.purple{
     background: var(--purple);
 }
 
-.team-box.gold, .summary-box.gold, .touchdown.gold{
+.team-box.gold, .summary-box.gold, .touchdown.gold, .bg.gold{
     background: var(--gold);
 }
 
-.team-box.silver, .summary-box.silver, .touchdown.silver{
+.team-box.silver, .summary-box.silver, .touchdown.silver, .bg.silver{
     background: var(--silver);
 }
 

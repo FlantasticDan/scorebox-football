@@ -33,6 +33,10 @@ const visitorTouchdown = document.getElementById('visitor-touchdown')
 const homeFlag = document.getElementById('home-flag')
 const visitorFlag = document.getElementById('visitor-flag')
 
+const homeAlert = document.getElementById('home-alert')
+const visitorAlert = document.getElementById('visitor-alert')
+const neutralAlert = document.getElementById('neutral-alert')
+
 let statusObject = undefined
 
 const socket = io()
@@ -197,6 +201,17 @@ function StatusUpdate() {
             flagOverlay.classList.add('hidden')
         }
     }
+
+    if (statusObject.alert_visibility == 'off')
+    {
+        HideAlerts()
+    }
+    else {
+        if (statusObject.alert_visibility == 'on')
+        {
+            ProcessAlert()
+        }
+    }
 }
 
 function HomeFlag(offense) {
@@ -214,13 +229,42 @@ function VisitorFlag(offense) {
 socket.on('flag-alert', payload => {
     if (payload.team == 'home')
     {
+        HideAlerts()
         HomeFlag(payload.offense)
     }
     else
     {
         if (payload.team == 'visitor')
         {
+            HideAlerts()
             VisitorFlag(payload.offense)
         }
     }
 })
+
+function HideAlerts() {
+    visitorAlert.classList.add('hidden')
+    homeAlert.classList.add('hidden')
+    neutralAlert.classList.add('hidden')
+}
+
+function ProcessAlert() {
+    HideAlerts()
+    switch (statusObject.alert_mode)
+    {
+        case 'home':
+            homeAlert.innerText = statusObject.alert_text
+            homeAlert.classList.remove('hidden')
+            break
+        case 'visitor':
+            visitorAlert.innerText = statusObject.alert_text
+            visitorAlert.classList.remove('hidden')
+            break
+        case 'neutral':
+            neutralAlert.innerText = statusObject.alert_text
+            neutralAlert.classList.remove('hidden')
+            break
+        default:
+            break
+    }
+}

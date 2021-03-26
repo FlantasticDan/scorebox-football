@@ -69,9 +69,30 @@ def flag_status(data):
     MANAGER.set_flag_status(data)
     return emit('status', MANAGER.status_export(), broadcast=True)
 
-@ socketio.on('flag-alert')
+@socketio.on('flag-alert')
 def flag_alert(payload):
+    global MANAGER
+    MANAGER.set_alert_visibility('off')
+    socketio.emit('status', MANAGER.status_export(), broadcast=True)
     return emit('flag-alert', payload, broadcast=True)
+
+@socketio.on('alert-mode-status')
+def alert_mode_status(data):
+    global MANAGER
+    MANAGER.set_alert_mode(data)
+    return emit('status', MANAGER.status_export(), broadcast=True)
+
+@socketio.on('alert-visibility-status')
+def alert_mode_status(data):
+    global MANAGER
+    MANAGER.set_alert_visibility(data)
+    return emit('status', MANAGER.status_export(), broadcast=True)
+
+@socketio.on('alert-text-status')
+def alert_mode_status(data):
+    global MANAGER
+    MANAGER.set_alert_text(data)
+    return emit('status', MANAGER.status_export(), broadcast=True)
 
 if __name__ == '__main__':
     bundle(app)

@@ -463,6 +463,25 @@ iframe{
     background-color: var(--less-dark-grey);
 }
 
+.text-input-preview {
+    width: 100%;
+    border: 4px solid var(--less-dark-grey);
+    padding: 0.5em;
+    box-sizing: border-box;
+}
+
+.text-input-title {
+    font-size: 1.35em;
+    text-transform: uppercase;
+    font-family: 'Open Sans';
+    font-weight: 700;
+}
+
+.text-input-caption {
+    letter-spacing: 0.15em;
+    color: var(--mid-grey);
+}
+
 #flag-controls{
     display: grid;
     width: 100%;
@@ -486,4 +505,12 @@ iframe{
     display: grid;
     width: 100%;
     grid-template-columns: repeat(2, 1fr);
+}
+
+#alert-controls{
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    place-items: center;
+    gap: 2em;
 }

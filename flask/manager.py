@@ -21,6 +21,9 @@ class FootballManager:
         self.game_state = None # type: Dict
 
         self.flag_status = 'console'
+        self.alert_mode = 'neutral'
+        self.alert_visibility = 'off'
+        self.alert_text = ''
  
         self.client = socketio.Client()
         self.client_thread = Thread(target=self.socket_client)
@@ -50,8 +53,22 @@ class FootballManager:
     
     def status_export(self) -> Dict:
         return {
-            'flag': self.flag_status
+            'flag': self.flag_status,
+            'alert_mode': self.alert_mode,
+            'alert_visibility': self.alert_visibility,
+            'alert_text': self.alert_text
         }
     
     def set_flag_status(self, new_status) -> None:
         self.flag_status = new_status
+    
+    def set_alert_mode(self, new_status) -> None:
+        self.alert_mode = new_status
+    
+    def set_alert_visibility(self, new_status) -> None:
+        self.alert_visibility = new_status
+    
+    def set_alert_text(self, new_status) -> None:
+        self.alert_text = new_status
+        self.alert_visibility = 'on'
+    
