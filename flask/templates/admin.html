@@ -94,33 +94,46 @@
             </div>
         </div>
 
-        <div id="touchdown-dashboard" class="dash-contents">
-            <h3>Touchdown Animations</h3>
-            <p>
-                Trigger touchdown animations.
-            </p>
-            <div id="touchdown-buttons">
-                <button id="home-touchdown-btn" class="btn">{{home_name}} {{home_mascot}} Touchdown</button>
-                <button id="visitor-touchdown-btn" class="btn">{{visitor_name}} {{visitor_mascot}} Touchdown</button>
+        <div class="dash-row">
+            <div id="touchdown-dashboard" class="dash-contents">
+                <h3>Touchdown Animations</h3>
+                <p>
+                    Trigger touchdown animations.
+                </p>
+                <div id="touchdown-buttons">
+                    <button id="home-touchdown-btn" class="btn">Home Touchdown</button>
+                    <button id="visitor-touchdown-btn" class="btn">Visitor Touchdown</button>
+                </div>
             </div>
-        </div>
-
-        <div id="flag-dashboard" class="dash-contents">
-            <h3>Flags</h3>
-            <p>
-                Control penalty flag context, override console flag data, and assign team penalty indicators.
-            </p>
-            <div id="flag-controls">
-                <div class="toggle-container three">
-                    <div class="toggle-prompt">
-                        Flag Indicator
+    
+            <div id="flag-dashboard" class="dash-contents">
+                <h3>Flags</h3>
+                <p>
+                    Control penalty flag context, override console flag data, and assign team penalty indicators.
+                </p>
+                <div id="flag-controls">
+                    <div class="toggle-container three">
+                        <div class="toggle-prompt">
+                            Flag Indicator
+                        </div>
+                        <button class="toggle" id="toggle-flag-off">Off</button>
+                        <button class="toggle" id="toggle-flag-on">On</button>
+                        <button class="toggle toggled" id="toggle-flag-console">Console</button>
                     </div>
-                    <button class="toggle" id="toggle-flag-off">Off</button>
-                    <button class="toggle" id="toggle-flag-on">On</button>
-                    <button class="toggle toggled" id="toggle-flag-console">Console Controlled</button>
+                    <div class="flag-stack">
+                        <div class="text-input top-row">
+                            <label for="flag-input">Penalty Description</label>
+                            <input type="text" id="flag-input">
+                        </div>
+                        <button class="btn" id="home-penalty">Home Penalty</button>
+                        <button class="btn" id="visitor-penalty">Visitor Penalty</button>
+                    </div>
+                    
                 </div>
             </div>
         </div>
+
+        
 
         <script src="/static/third-party/socket.io.min.js"></script>
         <script src="/static/admin.js"></script>

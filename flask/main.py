@@ -69,6 +69,10 @@ def flag_status(data):
     MANAGER.set_flag_status(data)
     return emit('status', MANAGER.status_export(), broadcast=True)
 
+@ socketio.on('flag-alert')
+def flag_alert(payload):
+    return emit('flag-alert', payload, broadcast=True)
+
 if __name__ == '__main__':
     bundle(app)
     socketio.run(app, port=5000)

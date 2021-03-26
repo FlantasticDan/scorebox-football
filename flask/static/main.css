@@ -435,3 +435,55 @@ iframe{
 .raw-data-content{
     font-family: 'Source Code Pro';
 }
+
+.text-input label {
+    display: block;
+    font-family: 'Source Sans Pro';
+    color: var(--mid-grey);
+    font-size: 1.15em;
+    letter-spacing: 0.15em;
+}
+
+.text-input {
+    width: 100%;
+    padding: 0.5em;
+}
+
+.text-input input {
+    width: 100%;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    font-family: 'Open Sans';
+    font-weight: 700;
+    color: white;
+    outline: 0px;
+    border: 4px solid var(--less-dark-grey);
+    padding: 0.2em;
+    box-sizing: border-box;
+    background-color: var(--less-dark-grey);
+}
+
+#flag-controls{
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+    gap: 2em;
+}
+
+.flag-stack{
+    display: grid;
+    place-items: center;
+    width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.flag-stack .top-row{
+    grid-column: 1/3;
+}
+
+.dash-row{
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+}

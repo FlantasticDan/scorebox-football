@@ -21,6 +21,10 @@ const toggleFlagOff = document.getElementById("toggle-flag-off")
 const toggleFlagOn = document.getElementById("toggle-flag-on")
 const toggleFlagConsole = document.getElementById("toggle-flag-console")
 
+const flagInput = document.getElementById('flag-input')
+const homePenalty = document.getElementById('home-penalty')
+const visitorPenalty = document.getElementById('visitor-penalty')
+
 let statusObject = undefined
 
 const socket = io()
@@ -101,3 +105,18 @@ function StatusUpdate() {
     SetFlagToggle(statusObject.flag)
 }
 
+function AssignPenalty(team) {
+    let offense = flagInput.value
+    if (offense.length > 0)
+    {
+        let payload = {
+            team: team,
+            offense: offense
+        }
+        socket.emit('flag-alert', payload)
+    }
+    flagInput.value = ""
+}
+
+homePenalty.onclick = () => {AssignPenalty('home')}
+visitorPenalty.onclick = () => {AssignPenalty('visitor')}

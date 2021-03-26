@@ -30,6 +30,9 @@ const flagOverlay = document.getElementById('flag-overlay')
 const homeTouchdown = document.getElementById('home-touchdown')
 const visitorTouchdown = document.getElementById('visitor-touchdown')
 
+const homeFlag = document.getElementById('home-flag')
+const visitorFlag = document.getElementById('visitor-flag')
+
 let statusObject = undefined
 
 const socket = io()
@@ -169,7 +172,7 @@ function VisitorTouchdown() {
     setTimeout(() => {visitorTouchdown.classList.remove('animate')}, 5500)
 }
 
-socket.on('touchdown', data=> {
+socket.on('touchdown', data => {
     if (data == 'home') {
         HomeTouchdown()
     }
@@ -195,3 +198,29 @@ function StatusUpdate() {
         }
     }
 }
+
+function HomeFlag(offense) {
+    homeFlag.innerText = offense
+    homeFlag.classList.add('animate')
+    setTimeout(() => {homeFlag.classList.remove('animate')}, 5500)
+}
+
+function VisitorFlag(offense) {
+    visitorFlag.innerText = offense
+    visitorFlag.classList.add('animate')
+    setTimeout(() => {visitorFlag.classList.remove('animate')}, 5500)
+}
+
+socket.on('flag-alert', payload => {
+    if (payload.team == 'home')
+    {
+        HomeFlag(payload.offense)
+    }
+    else
+    {
+        if (payload.team == 'visitor')
+        {
+            VisitorFlag(payload.offense)
+        }
+    }
+})
