@@ -25,6 +25,7 @@ body{
     height: 100vh;
     margin: 0;
     background: black;
+    overflow: hidden;
 }
 
 #scorebox{
@@ -430,7 +431,7 @@ body{
 }
 
 .animate-out{
-    transition: bottom 0.5s, left 0.5s;
+    transition: bottom 0.5s, left 0.5s, transform 0.5s;
 }
 
 div.animate-out.out{
