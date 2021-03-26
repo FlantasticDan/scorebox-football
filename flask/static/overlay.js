@@ -55,6 +55,7 @@ socket.on('update', payload => {
     visitorScore.innerText = payload.visitor_score
     gameClock.innerText = payload.clock
     shotClock.innerText = parseInt(payload.play)
+
     if (parseInt(payload.play) <= 5)
     {
         shotClock.classList.add('red')
@@ -63,8 +64,25 @@ socket.on('update', payload => {
     {
         shotClock.classList.remove('red')
     }
-    period.innerText = payload.quarter
-    downs.innerText = `${payload.down} & ${payload.to_go}`
+
+    if (payload.quarter != 0)
+    {
+        period.innerText = payload.quarter
+    }
+    else
+    {
+        period.innerText = ''
+    }
+    
+    if (payload.down != '' && payload.down != '   ')
+    {
+        downs.innerText = `${payload.down} & ${payload.to_go}`
+    }
+    else
+    {
+        downs.innerText = ''
+    }
+    
 
     if (statusObject.flag == "console")
     {
