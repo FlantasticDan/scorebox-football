@@ -14,22 +14,22 @@
 
     <body>
 
-        <div class="alert-box team-flag home-alert" id="home-flag">
+        <div class="alert-box team-flag home-alert animate-out" id="home-flag">
         </div>
 
-        <div class="alert-box team-flag visitor-alert" id="visitor-flag">
+        <div class="alert-box team-flag visitor-alert animate-out" id="visitor-flag">
         </div>
 
-        <div class="alert-box hidden" id="neutral-alert">
+        <div class="alert-box hidden animate-out" id="neutral-alert">
         </div>
 
-        <div class="alert-box team-alert home-alert bg {{home_color}} hidden" id="home-alert">
+        <div class="alert-box team-alert home-alert bg {{home_color}} hidden animate-out" id="home-alert">
         </div>
 
-        <div class="alert-box team-alert visitor-alert bg {{visitor_color}} hidden" id="visitor-alert">
+        <div class="alert-box team-alert visitor-alert bg {{visitor_color}} hidden animate-out" id="visitor-alert">
         </div>
 
-        <div id="scorebox">
+        <div id="scorebox" class="animate-out">
             <div id="home" class="team-box {{home_color}}">
                 <div class="timeouts">
                     <div class="timeout" id="home-timeout-1"></div>
@@ -84,19 +84,19 @@
             </div>
         </div>
 
-        <div id="flag-overlay" class="hidden">
+        <div id="flag-overlay" class="hidden animate-out">
             FLAG
         </div>
 
-        <div class="touchdown {{home_color}}" id="home-touchdown">
+        <div class="touchdown {{home_color}} animate-out" id="home-touchdown">
             <span class='letter-spacing-bug'>.</span>TOUCHDOWN
         </div>
 
-        <div class="touchdown {{visitor_color}}" id="visitor-touchdown">
+        <div class="touchdown {{visitor_color}} animate-out" id="visitor-touchdown">
             <span class='letter-spacing-bug'>.</span>TOUCHDOWN
         </div>
 
-        <div id="scorestate" class="hide">
+        <div id="scorestate" class="animate-out out">
             <div class="summary-box {{home_color}}">
                 <div class="home summary-logo"></div>
                 <div class="summary-score" id="home-summary-score">0</div>

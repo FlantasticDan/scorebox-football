@@ -286,3 +286,31 @@ function ProcessAlert() {
             break
     }
 }
+
+function ScoreBoxOut() {
+    scorebox.classList.add('out')
+    homeFlag.classList.add('out')
+    visitorFlag.classList.add('out')
+    neutralAlert.classList.add('out')
+    homeAlert.classList.add('out')
+    visitorAlert.classList.add('out')
+    flagOverlay.classList.add('out')
+    homeTouchdown.classList.add('out')
+    visitorTouchdown.classList.add('out')
+
+    scorestate.classList.remove('out')
+}
+
+function ScoreBoxIn() {
+    scorebox.classList.remove('out')
+    homeFlag.classList.remove('out')
+    visitorFlag.classList.remove('out')
+    neutralAlert.classList.remove('out')
+    homeAlert.classList.remove('out')
+    visitorAlert.classList.remove('out')
+    flagOverlay.classList.remove('out')
+    homeTouchdown.classList.remove('out')
+    visitorTouchdown.classList.remove('out')
+
+    scorestate.classList.add('out')
+}
