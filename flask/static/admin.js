@@ -42,6 +42,9 @@ const toggleDisplayHalf = document.getElementById('toggle-display-half')
 const toggleDisplayThird = document.getElementById('toggle-display-third')
 const toggleDisplayFinal = document.getElementById('toggle-display-final')
 
+const togglePlayVisibleOff = document.getElementById('toggle-play-visible-off')
+const togglePlayVisibleOn = document.getElementById('toggle-play-visible-on')
+
 let statusObject = undefined
 
 const socket = io()
@@ -124,6 +127,7 @@ function StatusUpdate() {
     SetAlertVisibilityToggle(statusObject.alert_visibility)
     alertPreview.innerText = statusObject.alert_text
     SetDisplayToggle(statusObject.display_mode)
+    SetPlayVisibilityToggle(statusObject.play_visibility)
 }
 
 function AssignPenalty(team) {
@@ -256,3 +260,32 @@ toggleDisplayFirst.onclick = () => {DisplayStatusChange('first')}
 toggleDisplayHalf.onclick = () => {DisplayStatusChange('half')}
 toggleDisplayThird.onclick = () => {DisplayStatusChange('third')}
 toggleDisplayFinal.onclick = () => {DisplayStatusChange('final')}
+
+
+
+function ClearPlayVisibilityToggles() {
+    togglePlayVisibleOff.classList.remove('toggled')
+    togglePlayVisibleOn.classList.remove('toggled')
+}
+
+function SetPlayVisibilityToggle(newState) {
+    ClearPlayVisibilityToggles()
+    switch (newState)
+    {
+        case "on":
+            togglePlayVisibleOn.classList.add('toggled')
+            break
+        case "off":
+            togglePlayVisibleOff.classList.add('toggled')
+            break
+        default:
+            break
+    }
+}
+
+function PlayVisibilityStatusChange(newState) {
+    socket.emit('play-visibility-status', newState)
+}
+
+togglePlayVisibleOn.onclick = () => {PlayVisibilityStatusChange('on')}
+togglePlayVisibleOff.onclick = () => {PlayVisibilityStatusChange('off')}

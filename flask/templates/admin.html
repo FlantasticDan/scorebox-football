@@ -171,23 +171,42 @@
             </div>
         </div>
 
-        <div id="display-mode-dashboard" class="dash-contents">
-            <h3>Display Mode</h3>
-            <p>
-                Control the overlay display mode.
-            </p>
+        <div class="dash-row uneven">
+            <div id="display-mode-dashboard" class="dash-contents">
+                <h3>Display Mode</h3>
+                <p>
+                    Control the overlay display mode.
+                </p>
 
-            <div id="display-mode-controls">
-                <div class="toggle-container six">
-                    <div class="toggle-prompt">
-                        Display Mode
+                <div id="display-mode-controls">
+                    <div class="toggle-container six">
+                        <div class="toggle-prompt">
+                            Display Mode
+                        </div>
+                        <button class="toggle toggled" id="toggle-display-live">Live</button>
+                        <button class="toggle" id="toggle-display-start">Starting Soon</button>
+                        <button class="toggle" id="toggle-display-first">End of 1st</button>
+                        <button class="toggle" id="toggle-display-half">Halftime</button>
+                        <button class="toggle" id="toggle-display-third">End of 3rd</button>
+                        <button class="toggle" id="toggle-display-final">Final</button>
                     </div>
-                    <button class="toggle toggled" id="toggle-display-live">Live</button>
-                    <button class="toggle" id="toggle-display-start">Starting Soon</button>
-                    <button class="toggle" id="toggle-display-first">End of 1st</button>
-                    <button class="toggle" id="toggle-display-half">Halftime</button>
-                    <button class="toggle" id="toggle-display-third">End of 3rd</button>
-                    <button class="toggle" id="toggle-display-final">Final</button>
+                </div>
+            </div>
+
+            <div id="play-visible-dashboard" class="dash-contents">
+                <h3>Play Clock Visibility</h3>
+                <p>
+                    Hide the play clock if the console operator is not using it.
+                </p>
+
+                <div id="play-visible-controls">
+                    <div class="toggle-container">
+                        <div class="toggle-prompt">
+                            Play Clock
+                        </div>
+                        <button class="toggle" id="toggle-play-visible-off">Off</button>
+                        <button class="toggle toggled" id="toggle-play-visible-on">On</button>
+                    </div>
                 </div>
             </div>
         </div>

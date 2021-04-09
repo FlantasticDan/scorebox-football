@@ -215,6 +215,7 @@ function StatusUpdate() {
     }
     
     ProcessDisplayMode()
+    ProcessPlayVisibility()
 }
 
 function HomeFlag(offense) {
@@ -331,5 +332,19 @@ function ProcessDisplayMode() {
                 break
         }
         ScoreBoxOut()
+    }
+}
+
+function ProcessPlayVisibility() {
+    switch (statusObject.play_visibility)
+    {
+        case "on":
+            shotClock.classList.remove('hide')
+            break
+        case "off":
+            shotClock.classList.add('hide')
+            break
+        default:
+            break
     }
 }

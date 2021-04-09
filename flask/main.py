@@ -5,7 +5,7 @@ from images import Logos
 from manager import FootballManager
 from bundle import bundle
 
-VERSION = 'v2.0.0 (03262021)'
+VERSION = 'v2.1.0 (04092021)'
 LOGOS = Logos()
 MANAGER = None # type: FootballManager
 
@@ -98,6 +98,12 @@ def alert_mode_status(data):
 def display_mode(data):
     global MANAGER
     MANAGER.set_display_mode(data)
+    return emit('status', MANAGER.status_export(), broadcast=True)
+
+@socketio.on('play-visibility-status')
+def play_visibility_status(data):
+    global MANAGER
+    MANAGER.set_play_visibility(data)
     return emit('status', MANAGER.status_export(), broadcast=True)
 
 if __name__ == '__main__':

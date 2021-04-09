@@ -512,6 +512,10 @@ iframe{
     grid-template-columns: repeat(2, 1fr);
 }
 
+.dash-row.uneven{
+    grid-template-columns: 3fr 1fr;
+}
+
 #alert-controls{
     display: grid;
     width: 100%;
