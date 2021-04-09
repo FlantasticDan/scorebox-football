@@ -220,7 +220,6 @@ alertCredits.onclick = () => {
         let creditLines = alertInput.value.split('*')
         let time = 0
         creditLines.forEach(line => {
-            console.log(line)
             let credit = line.trim()
             if (credit.length > 0) {
                 setTimeout(() => {
