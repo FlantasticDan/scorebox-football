@@ -5,7 +5,7 @@ from images import Logos
 from manager import FootballManager
 from bundle import bundle
 
-VERSION = 'v2.1.0 (04092021)'
+VERSION = 'v3.0.0-[remote-score-source] (08192021)'
 LOGOS = Logos()
 MANAGER = None # type: FootballManager
 
@@ -43,7 +43,7 @@ def visitor():
 def overlay():
     global MANAGER
     if MANAGER:
-        return render_template('overlay.html', **MANAGER.overlay_export())
+        return render_template('overlay.html', remote=MANAGER.remote, source=MANAGER.source, **MANAGER.overlay_export())
 
 @socketio.on('update')
 def update(payload):

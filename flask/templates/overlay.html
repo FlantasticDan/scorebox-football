@@ -112,6 +112,244 @@
 
         <script src="/static/third-party/socket.io.min.js"></script>
         <script src="/static/overlay.js"></script>
+        <script>
+        {% if not remote %}
+            socket.on('update', payload => {
+            homeScore.innerText = payload.home_score
+            visitorScore.innerText = payload.visitor_score
+            gameClock.innerText = payload.clock
+            shotClock.innerText = parseInt(payload.play)
+
+            if (parseInt(payload.play) <= 5)
+            {
+                shotClock.classList.add('red')
+            }
+            else
+            {
+                shotClock.classList.remove('red')
+            }
+
+            if (payload.quarter != 0)
+            {
+                period.innerText = payload.quarter
+            }
+            else
+            {
+                period.innerText = ''
+            }
+            
+            if (payload.down != '' && payload.down != '   ')
+            {
+                downs.innerText = `${payload.down} & ${payload.to_go}`
+            }
+            else
+            {
+                downs.innerText = ''
+            }
+            
+
+            if (statusObject.flag == "console")
+            {
+                if (payload.flag)
+                {
+                    scorebox.classList.add('flag')
+                    flagOverlay.classList.remove('hidden')
+                }
+                else
+                {
+                    scorebox.classList.remove('flag')
+                    flagOverlay.classList.add('hidden')
+                }
+            }    
+
+            if (payload.home_possesion){
+                homePossesion.classList.remove('hide')
+                visitorPossesion.classList.add('hide')
+            }
+
+            if (payload.visitor_possesion){
+                homePossesion.classList.add('hide')
+                visitorPossesion.classList.remove('hide')
+            }
+
+            if (payload.home_timeouts == 3)
+            {
+                homeTimeout1.classList.add('available')
+                homeTimeout2.classList.add('available')
+                homeTimeout3.classList.add('available')
+            }
+
+            if (payload.home_timeouts == 2)
+            {
+                homeTimeout1.classList.add('available')
+                homeTimeout2.classList.add('available')
+                homeTimeout3.classList.remove('available')
+            }
+
+            if (payload.home_timeouts == 1)
+            {
+                homeTimeout1.classList.add('available')
+                homeTimeout2.classList.remove('available')
+                homeTimeout3.classList.remove('available')
+            }
+
+            if (payload.home_timeouts == 0)
+            {
+                homeTimeout1.classList.remove('available')
+                homeTimeout2.classList.remove('available')
+                homeTimeout3.classList.remove('available')
+            }
+
+            if (payload.visitor_timeouts == 3)
+            {
+                visitorTimeout1.classList.add('available')
+                visitorTimeout2.classList.add('available')
+                visitorTimeout3.classList.add('available')
+            }
+
+            if (payload.visitor_timeouts == 2)
+            {
+                visitorTimeout1.classList.add('available')
+                visitorTimeout2.classList.add('available')
+                visitorTimeout3.classList.remove('available')
+            }
+
+            if (payload.visitor_timeouts == 1)
+            {
+                visitorTimeout1.classList.add('available')
+                visitorTimeout2.classList.remove('available')
+                visitorTimeout3.classList.remove('available')
+            }
+
+            if (payload.visitor_timeouts == 0)
+            {
+                visitorTimeout1.classList.remove('available')
+                visitorTimeout2.classList.remove('available')
+                visitorTimeout3.classList.remove('available')
+            }
+
+
+        })
+        {% else %}
+            source = io("{{source}}:9876")
+            source.on('update', payload => {
+            homeScore.innerText = payload.home_score
+            visitorScore.innerText = payload.visitor_score
+            gameClock.innerText = payload.clock
+            shotClock.innerText = parseInt(payload.play)
+
+            if (parseInt(payload.play) <= 5)
+            {
+                shotClock.classList.add('red')
+            }
+            else
+            {
+                shotClock.classList.remove('red')
+            }
+
+            if (payload.quarter != 0)
+            {
+                period.innerText = payload.quarter
+            }
+            else
+            {
+                period.innerText = ''
+            }
+            
+            if (payload.down != '' && payload.down != '   ')
+            {
+                downs.innerText = `${payload.down} & ${payload.to_go}`
+            }
+            else
+            {
+                downs.innerText = ''
+            }
+            
+
+            if (statusObject.flag == "console")
+            {
+                if (payload.flag)
+                {
+                    scorebox.classList.add('flag')
+                    flagOverlay.classList.remove('hidden')
+                }
+                else
+                {
+                    scorebox.classList.remove('flag')
+                    flagOverlay.classList.add('hidden')
+                }
+            }    
+
+            if (payload.home_possesion){
+                homePossesion.classList.remove('hide')
+                visitorPossesion.classList.add('hide')
+            }
+
+            if (payload.visitor_possesion){
+                homePossesion.classList.add('hide')
+                visitorPossesion.classList.remove('hide')
+            }
+
+            if (payload.home_timeouts == 3)
+            {
+                homeTimeout1.classList.add('available')
+                homeTimeout2.classList.add('available')
+                homeTimeout3.classList.add('available')
+            }
+
+            if (payload.home_timeouts == 2)
+            {
+                homeTimeout1.classList.add('available')
+                homeTimeout2.classList.add('available')
+                homeTimeout3.classList.remove('available')
+            }
+
+            if (payload.home_timeouts == 1)
+            {
+                homeTimeout1.classList.add('available')
+                homeTimeout2.classList.remove('available')
+                homeTimeout3.classList.remove('available')
+            }
+
+            if (payload.home_timeouts == 0)
+            {
+                homeTimeout1.classList.remove('available')
+                homeTimeout2.classList.remove('available')
+                homeTimeout3.classList.remove('available')
+            }
+
+            if (payload.visitor_timeouts == 3)
+            {
+                visitorTimeout1.classList.add('available')
+                visitorTimeout2.classList.add('available')
+                visitorTimeout3.classList.add('available')
+            }
+
+            if (payload.visitor_timeouts == 2)
+            {
+                visitorTimeout1.classList.add('available')
+                visitorTimeout2.classList.add('available')
+                visitorTimeout3.classList.remove('available')
+            }
+
+            if (payload.visitor_timeouts == 1)
+            {
+                visitorTimeout1.classList.add('available')
+                visitorTimeout2.classList.remove('available')
+                visitorTimeout3.classList.remove('available')
+            }
+
+            if (payload.visitor_timeouts == 0)
+            {
+                visitorTimeout1.classList.remove('available')
+                visitorTimeout2.classList.remove('available')
+                visitorTimeout3.classList.remove('available')
+            }
+
+
+        })
+        {% endif %}
+        </script>
 
     </body>
 

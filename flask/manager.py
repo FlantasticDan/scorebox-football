@@ -6,6 +6,10 @@ import socketio
 
 from consoles.sports import Football
 
+def is_string_ip(string: str) -> bool:
+    octets = string.split('.')
+    return len(octets) == 4
+
 class FootballManager:
     '''Football Game State Manager'''
     def __init__(self, home_team, home_mascot, home_color, visitor_team, visitor_mascot, visitor_color, com_port) -> None:
@@ -26,13 +30,18 @@ class FootballManager:
         self.alert_text = ''
         self.display_mode = 'live'
         self.play_visibility = 'on'
- 
-        self.client = socketio.Client()
-        self.client_thread = Thread(target=self.socket_client)
-        self.client_thread.start()
 
-        self.console = Football(com_port)
-        self.console.on_update = self.updater
+        self.remote = is_string_ip(com_port)
+        self.source = com_port
+
+        if not self.remote:
+            self.client = socketio.Client()
+            self.client_thread = Thread(target=self.socket_client)
+            self.client_thread.start()
+
+            self.console = Football(com_port)
+            self.console.on_update = self.updater
+
     
     def updater(self, game_state):
         if self.client.connected:
