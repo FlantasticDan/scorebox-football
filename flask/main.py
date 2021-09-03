@@ -52,7 +52,7 @@ def update(payload):
 @app.route('/admin')
 def admin():
     global MANAGER
-    return render_template("admin.html", version=VERSION, **MANAGER.overlay_export())
+    return render_template("admin.html", version=VERSION, remote=MANAGER.remote, source=MANAGER.source, **MANAGER.overlay_export())
 
 @socketio.on('touchdown')
 def touchdown(data):

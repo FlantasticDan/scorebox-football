@@ -54,18 +54,6 @@ socket.on('connect', () => {
     socket.emit('status-request', 'status')
 })
 
-socket.on('status', payload => {
-    status.innerText = 'CONNECTED'
-    status.classList.remove('error')
-    statusObject = payload
-    StatusUpdate()
-})
-
-socket.on('disconnect', () => {
-    status.innerText = 'DISCONNECTED'
-    status.classList.add('error')
-})
-
 homeTouchdownBtn.onclick = () => {
     socket.emit('touchdown', 'home')
 }
@@ -73,22 +61,6 @@ homeTouchdownBtn.onclick = () => {
 visitorTouchdownBtn.onclick = () => {
     socket.emit('touchdown', 'visitor')
 }
-
-socket.on('update', payload => {
-    rawHomeScore.innerText = payload.home_score
-    rawVisitorScore.innerText = payload.visitor_score
-    rawHomeTimeouts.innerText = payload.home_timeouts
-    rawVisitorTimeouts.innerText = payload.visitor_timeouts
-    rawHomePossesion.innerText = payload.home_possesion
-    rawVisitorPossesion.innerText = payload.visitor_possesion
-    rawClock.innerText = payload.clock
-    rawPlay.innerText = payload.play
-    rawQuarter.innerText = payload.quarter
-    rawDown.innerText = payload.down
-    rawToGo.innerText = payload.to_go
-    rawBallOn.innerText = payload.ball_on
-    rawFlag.innerText = payload.flag
-})
 
 function ClearFlagToggles() {
     toggleFlagConsole.classList.remove('toggled')
