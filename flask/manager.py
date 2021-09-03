@@ -3,6 +3,7 @@ from threading import Thread
 from typing import Dict
 
 import socketio
+import httpx
 
 from consoles.sports import Football
 
@@ -41,6 +42,8 @@ class FootballManager:
 
             self.console = Football(com_port)
             self.console.on_update = self.updater
+        else:
+            httpx.get(f'{self.source}:9876/init/football')
 
     
     def updater(self, game_state):
